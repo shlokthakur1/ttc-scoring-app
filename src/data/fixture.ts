@@ -1,5 +1,5 @@
 // The official draw for the Tennis Tuesdays Cup 2026, transcribed from
-// "Tennis Tuesday Cup 2026.pdf" (pages "The Fixture", "The Fixture (cont.)",
+// "Tennis_Tuesdays_Cup_2026_FINAL.pdf" (pages "The Fixture", "The Fixture (cont.)",
 // "The Finals" and "The Day").
 
 export type PlayerId = string;
@@ -18,7 +18,7 @@ export type SlotRef =
   | { kind: 'seed'; from: 'rr' | 'ff'; pos: 1 | 2 | 3 | 4 };
 
 export interface Match {
-  /** Match number as printed in the program (1–63). */
+  /** Match number as printed in the program (1–74). */
   id: number;
   sessionKey: string;
   stage: Stage;
@@ -54,7 +54,7 @@ export interface Session {
 export const TOURNAMENT = {
   name: 'Tennis Tuesdays Cup',
   year: 2026,
-  date: 'Saturday, 31 October 2026',
+  date: 'Sunday, 15 November 2026',
   venue: 'Eildon Park Tennis Club, Rowville',
   courts: 3,
   rrTarget: 7,
@@ -65,16 +65,18 @@ export const TOURNAMENT = {
 const hm = (h: number, m: number) => h * 60 + m;
 
 export const DAY_PLAN = [
-  { time: hm(9, 30), title: 'Arrival & warm-up', detail: '' },
-  { time: hm(10, 0), title: 'Round robin begins', detail: '19 rounds. 3 courts. 55 matches. Race to 7.' },
-  { time: hm(12, 20), title: 'Round robin ends', detail: 'Final standings confirmed. Top 4 advance. Short break.' },
-  { time: hm(12, 30), title: 'The Final Four', detail: 'Six matches. Fresh standings. Race to 11.' },
-  { time: hm(13, 5), title: 'Third-place playoff', detail: '#3 vs #4.' },
-  { time: hm(13, 15), title: 'The Final', detail: '#1 vs #2. Winner takes all.' },
-  { time: hm(13, 25), title: 'Presentation', detail: 'Champion crowned. Courts vacated by 1:30 PM.' },
+  { time: hm(12, 30), title: 'Arrival & warm-up', detail: '' },
+  // The program's timetable still says "19 rounds, 55 matches"; the 12-player draw is 22 rounds, 66 matches.
+  { time: hm(13, 0), title: 'Round robin begins', detail: '22 rounds. 3 courts. 66 matches. Race to 7.' },
+  { time: hm(15, 20), title: 'Round robin ends', detail: 'Final standings confirmed. Top 4 advance. Short break.' },
+  { time: hm(15, 30), title: 'The Final Four', detail: 'Six matches. Fresh standings. Race to 11.' },
+  { time: hm(16, 5), title: 'Third-place playoff', detail: '#3 vs #4.' },
+  { time: hm(16, 15), title: 'The Final', detail: '#1 vs #2. Winner takes all.' },
+  { time: hm(16, 30), title: 'Presentation', detail: 'Champion crowned. Courts booked until 5:00 PM.' },
 ] as const;
 
-export const COURTS_VACATED_BY = hm(13, 30);
+// The courts are booked 12:30 PM – 5:00 PM.
+export const COURTS_VACATED_BY = hm(17, 0);
 
 export const DEFAULT_PLAYERS: Player[] = [
   { id: 'abhi', name: 'Abhi' },
@@ -82,6 +84,7 @@ export const DEFAULT_PLAYERS: Player[] = [
   { id: 'ass', name: 'Ass' },
   { id: 'fazz', name: 'Fazz' },
   { id: 'garch', name: 'Garch' },
+  { id: 'hitesh', name: 'Hitesh' },
   { id: 'kuvindu', name: 'Kuvindu' },
   { id: 'ritz', name: 'Ritz' },
   { id: 'savo', name: 'Savo' },
@@ -92,50 +95,57 @@ export const DEFAULT_PLAYERS: Player[] = [
 
 export const PLAYER_IDS: PlayerId[] = DEFAULT_PLAYERS.map((p) => p.id);
 
-// Round robin draw: [home, away] per court, in court order. `null` = court unused.
-const RR_DRAW: ([PlayerId, PlayerId] | null)[][] = [
+// Round robin draw: [home, away] per court, in court order.
+const RR_DRAW: [PlayerId, PlayerId][][] = [
   /* R1 */ [['fazz', 'shlok'], ['ritz', 'tmog'], ['savo', 'abhi']],
-  /* R2 */ [['savo', 'shlok'], ['ass', 'vik'], ['abi', 'kuvindu']],
-  /* R3 */ [['garch', 'abhi'], ['ritz', 'vik'], ['kuvindu', 'ass']],
+  /* R2 */ [['hitesh', 'garch'], ['ass', 'vik'], ['abi', 'kuvindu']],
+  /* R3 */ [['hitesh', 'fazz'], ['ritz', 'vik'], ['kuvindu', 'ass']],
   /* R4 */ [['shlok', 'tmog'], ['abhi', 'fazz'], ['abi', 'savo']],
-  /* R5 */ [['abi', 'garch'], ['ritz', 'ass'], ['tmog', 'kuvindu']],
+  /* R5 */ [['abi', 'garch'], ['hitesh', 'ritz'], ['tmog', 'kuvindu']],
   /* R6 */ [['ass', 'fazz'], ['abhi', 'kuvindu'], ['vik', 'savo']],
-  /* R7 */ [['garch', 'tmog'], ['vik', 'shlok'], null],
+  /* R7 */ [['garch', 'tmog'], ['vik', 'shlok'], ['hitesh', 'ass']],
   /* R8 */ [['kuvindu', 'garch'], ['savo', 'ritz'], ['abi', 'fazz']],
-  /* R9 */ [['ass', 'abhi'], ['tmog', 'savo'], ['fazz', 'kuvindu']],
-  /* R10 */ [['garch', 'shlok'], ['abhi', 'abi'], ['tmog', 'vik']],
+  /* R9 */ [['ass', 'abhi'], ['tmog', 'savo'], ['hitesh', 'shlok']],
+  /* R10 */ [['garch', 'shlok'], ['hitesh', 'kuvindu'], ['tmog', 'vik']],
   /* R11 */ [['fazz', 'garch'], ['kuvindu', 'ritz'], ['abi', 'vik']],
   /* R12 */ [['shlok', 'abhi'], ['fazz', 'ritz'], ['savo', 'ass']],
-  /* R13 */ [['garch', 'ass'], ['abhi', 'tmog'], null],
+  /* R13 */ [['garch', 'ass'], ['abhi', 'tmog'], ['hitesh', 'savo']],
   /* R14 */ [['kuvindu', 'shlok'], ['tmog', 'abi'], ['vik', 'fazz']],
   /* R15 */ [['vik', 'garch'], ['shlok', 'ritz'], ['kuvindu', 'savo']],
-  /* R16 */ [['ritz', 'abhi'], ['ass', 'abi'], ['tmog', 'fazz']],
+  /* R16 */ [['ritz', 'abhi'], ['ass', 'abi'], ['hitesh', 'tmog']],
   /* R17 */ [['shlok', 'abi'], ['abhi', 'vik'], ['fazz', 'savo']],
   /* R18 */ [['garch', 'ritz'], ['shlok', 'ass'], ['vik', 'kuvindu']],
-  /* R19 */ [['savo', 'garch'], ['ritz', 'abi'], ['ass', 'tmog']],
+  /* R19 */ [['hitesh', 'abhi'], ['ritz', 'abi'], ['ass', 'tmog']],
+  /* R20 */ [['fazz', 'kuvindu'], ['abhi', 'abi'], ['savo', 'garch']],
+  /* R21 */ [['savo', 'shlok'], ['ritz', 'ass'], ['hitesh', 'vik']],
+  /* R22 */ [['garch', 'abhi'], ['tmog', 'fazz'], ['hitesh', 'abi']],
 ];
 
 // Byes exactly as printed, used by the tests to check the transcription.
+// (Round 3's printed list also names Fazz, who is on Court 1 that round.)
 export const RR_PRINTED_BYES: PlayerId[][] = [
-  ['garch', 'ass', 'abi', 'vik', 'kuvindu'],
-  ['garch', 'ritz', 'abhi', 'tmog', 'fazz'],
-  ['shlok', 'tmog', 'abi', 'fazz', 'savo'],
-  ['garch', 'ritz', 'ass', 'vik', 'kuvindu'],
-  ['shlok', 'abhi', 'vik', 'fazz', 'savo'],
-  ['garch', 'shlok', 'ritz', 'tmog', 'abi'],
-  ['ritz', 'ass', 'abhi', 'abi', 'fazz', 'kuvindu', 'savo'],
-  ['shlok', 'ass', 'abhi', 'tmog', 'vik'],
-  ['garch', 'shlok', 'ritz', 'abi', 'vik'],
-  ['ritz', 'ass', 'fazz', 'kuvindu', 'savo'],
-  ['shlok', 'ass', 'abhi', 'tmog', 'savo'],
-  ['garch', 'tmog', 'abi', 'vik', 'kuvindu'],
-  ['shlok', 'ritz', 'abi', 'vik', 'fazz', 'kuvindu', 'savo'],
-  ['garch', 'ritz', 'ass', 'abhi', 'savo'],
-  ['ass', 'abhi', 'tmog', 'abi', 'fazz'],
-  ['garch', 'shlok', 'vik', 'kuvindu', 'savo'],
-  ['garch', 'ritz', 'ass', 'tmog', 'kuvindu'],
-  ['abhi', 'tmog', 'abi', 'fazz', 'savo'],
-  ['shlok', 'abhi', 'vik', 'fazz', 'kuvindu'],
+  ['garch', 'ass', 'abi', 'vik', 'kuvindu', 'hitesh'],
+  ['shlok', 'ritz', 'abhi', 'tmog', 'fazz', 'savo'],
+  ['garch', 'shlok', 'abhi', 'tmog', 'abi', 'fazz', 'savo'],
+  ['garch', 'ritz', 'ass', 'vik', 'kuvindu', 'hitesh'],
+  ['shlok', 'ass', 'abhi', 'vik', 'fazz', 'savo'],
+  ['garch', 'shlok', 'ritz', 'tmog', 'abi', 'hitesh'],
+  ['ritz', 'abhi', 'abi', 'fazz', 'kuvindu', 'savo'],
+  ['shlok', 'ass', 'abhi', 'tmog', 'vik', 'hitesh'],
+  ['garch', 'ritz', 'abi', 'vik', 'fazz', 'kuvindu'],
+  ['ritz', 'ass', 'abhi', 'abi', 'fazz', 'savo'],
+  ['shlok', 'ass', 'abhi', 'tmog', 'savo', 'hitesh'],
+  ['garch', 'tmog', 'abi', 'vik', 'kuvindu', 'hitesh'],
+  ['shlok', 'ritz', 'abi', 'vik', 'fazz', 'kuvindu'],
+  ['garch', 'ritz', 'ass', 'abhi', 'savo', 'hitesh'],
+  ['ass', 'abhi', 'tmog', 'abi', 'fazz', 'hitesh'],
+  ['garch', 'shlok', 'vik', 'fazz', 'kuvindu', 'savo'],
+  ['garch', 'ritz', 'ass', 'tmog', 'kuvindu', 'hitesh'],
+  ['abhi', 'tmog', 'abi', 'fazz', 'savo', 'hitesh'],
+  ['garch', 'shlok', 'vik', 'fazz', 'kuvindu', 'savo'],
+  ['shlok', 'ritz', 'ass', 'tmog', 'vik', 'hitesh'],
+  ['garch', 'abhi', 'tmog', 'abi', 'fazz', 'kuvindu'],
+  ['shlok', 'ritz', 'ass', 'vik', 'kuvindu', 'savo'],
 ];
 
 const q = (pos: 1 | 2 | 3 | 4): SlotRef => ({ kind: 'seed', from: 'rr', pos });
@@ -172,8 +182,8 @@ function buildSchedule(): { sessions: Session[]; matches: Match[] } {
     sessions.push(session);
   };
 
-  // 19 rounds between 10:00 and ~12:20.
-  const rrMinutes = (hm(12, 20) - hm(10, 0)) / RR_DRAW.length;
+  // 22 rounds between 1:00 PM and ~3:20 PM.
+  const rrMinutes = (hm(15, 20) - hm(13, 0)) / RR_DRAW.length;
   RR_DRAW.forEach((round, i) =>
     addSession(
       {
@@ -183,16 +193,16 @@ function buildSchedule(): { sessions: Session[]; matches: Match[] } {
         label: `Round ${i + 1}`,
         shortLabel: `R${i + 1}`,
         target: TOURNAMENT.rrTarget,
-        plannedStart: hm(10, 0) + i * rrMinutes,
+        plannedStart: hm(13, 0) + i * rrMinutes,
         plannedMinutes: rrMinutes,
         autoStart: i > 0,
       },
-      round.map((pair) => (pair ? [p(pair[0]), p(pair[1])] : null)),
+      round.map((pair) => [p(pair[0]), p(pair[1])]),
     ),
   );
 
-  // Final Four: 12:30 to ~1:05.
-  const ffMinutes = (hm(13, 5) - hm(12, 30)) / FF_DRAW.length;
+  // Final Four: 3:30 PM to ~4:05 PM.
+  const ffMinutes = (hm(16, 5) - hm(15, 30)) / FF_DRAW.length;
   FF_DRAW.forEach((round, i) =>
     addSession(
       {
@@ -202,7 +212,7 @@ function buildSchedule(): { sessions: Session[]; matches: Match[] } {
         label: `Final Four · Round ${i + 1}`,
         shortLabel: `FF${i + 1}`,
         target: TOURNAMENT.finalsTarget,
-        plannedStart: hm(12, 30) + i * ffMinutes,
+        plannedStart: hm(15, 30) + i * ffMinutes,
         plannedMinutes: ffMinutes,
         autoStart: i > 0,
       },
@@ -218,7 +228,7 @@ function buildSchedule(): { sessions: Session[]; matches: Match[] } {
       label: 'Third Place Playoff',
       shortLabel: '3rd',
       target: TOURNAMENT.finalsTarget,
-      plannedStart: hm(13, 5),
+      plannedStart: hm(16, 5),
       plannedMinutes: 10,
       autoStart: false,
     },
@@ -233,8 +243,8 @@ function buildSchedule(): { sessions: Session[]; matches: Match[] } {
       label: 'The Final',
       shortLabel: 'Final',
       target: TOURNAMENT.finalsTarget,
-      plannedStart: hm(13, 15),
-      plannedMinutes: 10,
+      plannedStart: hm(16, 15),
+      plannedMinutes: 15,
       autoStart: false,
     },
     [[f(1), f(2)]],
@@ -254,7 +264,7 @@ export const RR_MATCHES = MATCHES.filter((m) => m.stage === 'rr');
 export const FF_MATCHES = MATCHES.filter((m) => m.stage === 'ff');
 export const BRONZE_MATCH = MATCHES.find((m) => m.stage === 'bronze')!;
 export const FINAL_MATCH = MATCHES.find((m) => m.stage === 'final')!;
-export const PRESENTATION_TIME = hm(13, 25);
+export const PRESENTATION_TIME = hm(16, 30);
 
 export const STAGE_LABEL: Record<Stage, string> = {
   rr: 'Round Robin',

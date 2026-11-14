@@ -1,4 +1,4 @@
-import { COURTS_VACATED_BY, PRESENTATION_TIME, SESSIONS, STAGE_LABEL, TOURNAMENT, type Session } from '../data/fixture';
+import { COURTS_VACATED_BY, PRESENTATION_TIME, RR_SESSIONS, SESSIONS, STAGE_LABEL, TOURNAMENT, type Session } from '../data/fixture';
 import { scheduleStatus, formatClock, formatDuration, formatTime, RR_PLANNED_END } from '../lib/schedule';
 import { REHEARSAL } from '../lib/storage';
 import { copyText, sessionText } from '../lib/share';
@@ -80,7 +80,7 @@ function SessionHeader({ session }: { session: Session }) {
         <h1>
           {session.stage === 'rr' || session.stage === 'ff' ? (
             <>
-              Round {session.round} <span className="of">of {session.stage === 'rr' ? 19 : 3}</span>
+              Round {session.round} <span className="of">of {session.stage === 'rr' ? RR_SESSIONS.length : 3}</span>
             </>
           ) : (
             session.label

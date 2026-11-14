@@ -1,4 +1,4 @@
-import { DAY_PLAN, TOURNAMENT } from '../data/fixture';
+import { DAY_PLAN, DEFAULT_PLAYERS, RR_SESSIONS, TOURNAMENT } from '../data/fixture';
 import { formatClock } from '../lib/schedule';
 import { Card } from '../components/ui';
 
@@ -46,7 +46,7 @@ export function RulesPage() {
           <p>The winner reports the final score immediately after the match, at the scoring laptop.</p>
         </Card>
         <Card title="Rest & rounds">
-          <p>Each round has 2–3 matches; the remaining players have byes.</p>
+          <p>Each round has 3 matches; the remaining 6 players have byes.</p>
           <p>Once all matches in the round are completed, the next round begins immediately.</p>
         </Card>
         <Card title="Round robin standings">
@@ -57,7 +57,8 @@ export function RulesPage() {
             <li>Points won</li>
           </ol>
           <p className="muted small">
-            Top 4 advance to the Final Four. Each of the Final Four plays the others once (fresh standings); the top 2 play The
+            {DEFAULT_PLAYERS.length} players, everyone plays everyone once ({DEFAULT_PLAYERS.length - 1} matches each over{' '}
+            {RR_SESSIONS.length} rounds). Top 4 advance to the Final Four. Each of the Final Four plays the others once (fresh standings); the top 2 play The
             Final, the bottom 2 play the Third Place Playoff.
           </p>
         </Card>
