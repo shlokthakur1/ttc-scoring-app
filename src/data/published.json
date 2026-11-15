@@ -1,1 +1,871 @@
-null
+{
+  "version": 2,
+  "players": [
+    {
+      "id": "abhi",
+      "name": "Abhi"
+    },
+    {
+      "id": "abi",
+      "name": "Abi"
+    },
+    {
+      "id": "ass",
+      "name": "Ass"
+    },
+    {
+      "id": "fazz",
+      "name": "Fazz"
+    },
+    {
+      "id": "garch",
+      "name": "Garch"
+    },
+    {
+      "id": "hitesh",
+      "name": "Hitesh"
+    },
+    {
+      "id": "kuvindu",
+      "name": "Kuvindu"
+    },
+    {
+      "id": "ritz",
+      "name": "Ritz"
+    },
+    {
+      "id": "savo",
+      "name": "Savo"
+    },
+    {
+      "id": "shlok",
+      "name": "Shlok"
+    },
+    {
+      "id": "tmog",
+      "name": "Tmog"
+    },
+    {
+      "id": "vik",
+      "name": "Vik"
+    }
+  ],
+  "results": {
+    "1": {
+      "home": 2,
+      "away": 7,
+      "at": 1794708512756
+    },
+    "2": {
+      "home": 1,
+      "away": 7,
+      "at": 1794708526899
+    },
+    "3": {
+      "home": 6,
+      "away": 8,
+      "at": 1794708658666
+    },
+    "4": {
+      "home": 3,
+      "away": 7,
+      "at": 1794708934966
+    },
+    "5": {
+      "home": 8,
+      "away": 6,
+      "at": 1794709056765
+    },
+    "6": {
+      "home": 6,
+      "away": 8,
+      "at": 1794709073375
+    },
+    "7": {
+      "home": 3,
+      "away": 7,
+      "at": 1794709389640
+    },
+    "8": {
+      "home": 7,
+      "away": 4,
+      "at": 1794709377882
+    },
+    "9": {
+      "home": 3,
+      "away": 7,
+      "at": 1794709459373
+    },
+    "10": {
+      "home": 2,
+      "away": 7,
+      "at": 1794709709442
+    },
+    "11": {
+      "home": 7,
+      "away": 5,
+      "at": 1794709756651
+    },
+    "12": {
+      "home": 7,
+      "away": 2,
+      "at": 1794709748721
+    },
+    "13": {
+      "home": 3,
+      "away": 7,
+      "at": 1794710034132
+    },
+    "14": {
+      "home": 1,
+      "away": 7,
+      "at": 1794710060629
+    },
+    "15": {
+      "home": 7,
+      "away": 3,
+      "at": 1794710142026
+    },
+    "16": {
+      "home": 7,
+      "away": 4,
+      "at": 1794710514504
+    },
+    "17": {
+      "home": 10,
+      "away": 8,
+      "at": 1794710686897
+    },
+    "18": {
+      "home": 8,
+      "away": 6,
+      "at": 1794710676282
+    },
+    "19": {
+      "home": 5,
+      "away": 7,
+      "at": 1794711120183
+    },
+    "20": {
+      "home": 3,
+      "away": 7,
+      "at": 1794711102959
+    },
+    "21": {
+      "home": 4,
+      "away": 7,
+      "at": 1794711169523
+    },
+    "22": {
+      "home": 2,
+      "away": 7,
+      "at": 1794711512861
+    },
+    "23": {
+      "home": 5,
+      "away": 7,
+      "at": 1794711578132
+    },
+    "24": {
+      "home": 7,
+      "away": 2,
+      "at": 1794711475254
+    },
+    "25": {
+      "home": 7,
+      "away": 5,
+      "at": 1794712126849
+    },
+    "26": {
+      "home": 7,
+      "away": 3,
+      "at": 1794711962056
+    },
+    "27": {
+      "home": 4,
+      "away": 7,
+      "at": 1794712023244
+    },
+    "28": {
+      "home": 5,
+      "away": 7,
+      "at": 1794712567119
+    },
+    "29": {
+      "home": 7,
+      "away": 9,
+      "at": 1794712620840
+    },
+    "30": {
+      "home": 7,
+      "away": 1,
+      "at": 1794712681742
+    },
+    "31": {
+      "home": 3,
+      "away": 7,
+      "at": 1794713007794
+    },
+    "32": {
+      "home": 5,
+      "away": 7,
+      "at": 1794713020197
+    },
+    "33": {
+      "home": 7,
+      "away": 5,
+      "at": 1794713038666
+    },
+    "34": {
+      "home": 8,
+      "away": 6,
+      "at": 1794713487214
+    },
+    "35": {
+      "home": 4,
+      "away": 7,
+      "at": 1794713396202
+    },
+    "36": {
+      "home": 0,
+      "away": 7,
+      "at": 1794713366104
+    },
+    "37": {
+      "home": 5,
+      "away": 7,
+      "at": 1794713898847
+    },
+    "38": {
+      "home": 5,
+      "away": 7,
+      "at": 1794713955670
+    },
+    "39": {
+      "home": 7,
+      "away": 1,
+      "at": 1794713880023
+    },
+    "40": {
+      "home": 3,
+      "away": 7,
+      "at": 1794714377992
+    },
+    "41": {
+      "home": 7,
+      "away": 1,
+      "at": 1794714330651
+    },
+    "42": {
+      "home": 9,
+      "away": 11,
+      "at": 1794714561519
+    },
+    "43": {
+      "home": 2,
+      "away": 7,
+      "at": 1794714853943
+    },
+    "44": {
+      "home": 8,
+      "away": 6,
+      "at": 1794715022300
+    },
+    "45": {
+      "home": 7,
+      "away": 3,
+      "at": 1794714882465
+    },
+    "46": {
+      "home": 7,
+      "away": 5,
+      "at": 1794715577627
+    },
+    "47": {
+      "home": 7,
+      "away": 2,
+      "at": 1794715336732
+    },
+    "48": {
+      "home": 4,
+      "away": 7,
+      "at": 1794715468405
+    },
+    "49": {
+      "home": 7,
+      "away": 4,
+      "at": 1794715869419
+    },
+    "50": {
+      "home": 8,
+      "away": 6,
+      "at": 1794715903302
+    },
+    "51": {
+      "home": 6,
+      "away": 8,
+      "at": 1794715944404
+    },
+    "52": {
+      "home": 7,
+      "away": 4,
+      "at": 1794716508618
+    },
+    "53": {
+      "home": 2,
+      "away": 7,
+      "at": 1794716351455
+    },
+    "54": {
+      "home": 7,
+      "away": 4,
+      "at": 1794716371319
+    },
+    "55": {
+      "home": 5,
+      "away": 7,
+      "at": 1794716874737
+    },
+    "56": {
+      "home": 7,
+      "away": 1,
+      "at": 1794716834673
+    },
+    "57": {
+      "home": 8,
+      "away": 6,
+      "at": 1794717022447
+    },
+    "58": {
+      "home": 5,
+      "away": 7,
+      "at": 1794717618686
+    },
+    "59": {
+      "home": 7,
+      "away": 9,
+      "at": 1794717608087
+    },
+    "60": {
+      "home": 6,
+      "away": 8,
+      "at": 1794717611801
+    },
+    "61": {
+      "home": 1,
+      "away": 7,
+      "at": 1794718108302
+    },
+    "62": {
+      "home": 7,
+      "away": 5,
+      "at": 1794718103389
+    },
+    "63": {
+      "home": 7,
+      "away": 3,
+      "at": 1794718011795
+    },
+    "64": {
+      "home": 10,
+      "away": 8,
+      "at": 1794718711270
+    },
+    "65": {
+      "home": 7,
+      "away": 1,
+      "at": 1794718456417
+    },
+    "66": {
+      "home": 1,
+      "away": 7,
+      "at": 1794718425036
+    },
+    "67": {
+      "home": 11,
+      "away": 3,
+      "at": 1794719286882
+    },
+    "68": {
+      "home": 4,
+      "away": 11,
+      "at": 1794719459062
+    },
+    "69": {
+      "home": 11,
+      "away": 5,
+      "at": 1794719960143
+    },
+    "70": {
+      "home": 11,
+      "away": 13,
+      "at": 1794720056929
+    },
+    "71": {
+      "home": 12,
+      "away": 10,
+      "at": 1794721608444
+    },
+    "72": {
+      "home": 12,
+      "away": 10,
+      "at": 1794721611216
+    },
+    "73": {
+      "home": 5,
+      "away": 11,
+      "at": 1794721614990
+    },
+    "74": {
+      "home": 11,
+      "away": 8,
+      "at": 1794721622612
+    }
+  },
+  "sessionTimes": {
+    "rr-1": {
+      "end": 1794708658666
+    },
+    "rr-2": {
+      "start": 1794708658666,
+      "autoStarted": true,
+      "end": 1794709073375
+    },
+    "rr-3": {
+      "start": 1794709073375,
+      "autoStarted": true,
+      "end": 1794709459373
+    },
+    "rr-4": {
+      "start": 1794709459373,
+      "autoStarted": true,
+      "end": 1794709756651
+    },
+    "rr-5": {
+      "start": 1794709756651,
+      "autoStarted": true,
+      "end": 1794710142026
+    },
+    "rr-6": {
+      "start": 1794710142026,
+      "autoStarted": true,
+      "end": 1794710686897
+    },
+    "rr-7": {
+      "start": 1794710686897,
+      "autoStarted": true,
+      "end": 1794711169523
+    },
+    "rr-8": {
+      "start": 1794711169523,
+      "autoStarted": true,
+      "end": 1794711578132
+    },
+    "rr-9": {
+      "start": 1794711578132,
+      "autoStarted": true,
+      "end": 1794712126849
+    },
+    "rr-10": {
+      "start": 1794712126849,
+      "autoStarted": true,
+      "end": 1794712681742
+    },
+    "rr-11": {
+      "start": 1794712681742,
+      "autoStarted": true,
+      "end": 1794713038666
+    },
+    "rr-12": {
+      "start": 1794713038666,
+      "autoStarted": true,
+      "end": 1794713487214
+    },
+    "rr-13": {
+      "start": 1794713487214,
+      "autoStarted": true,
+      "end": 1794713955670
+    },
+    "rr-14": {
+      "start": 1794713955670,
+      "autoStarted": true,
+      "end": 1794714561519
+    },
+    "rr-15": {
+      "start": 1794714561519,
+      "autoStarted": true,
+      "end": 1794715022300
+    },
+    "rr-16": {
+      "start": 1794715022300,
+      "autoStarted": true,
+      "end": 1794715577627
+    },
+    "rr-17": {
+      "start": 1794715577627,
+      "autoStarted": true,
+      "end": 1794715944404
+    },
+    "rr-18": {
+      "start": 1794715944404,
+      "autoStarted": true,
+      "end": 1794716508618
+    },
+    "rr-19": {
+      "start": 1794716508618,
+      "autoStarted": true,
+      "end": 1794717022447
+    },
+    "rr-20": {
+      "start": 1794717022447,
+      "autoStarted": true,
+      "end": 1794717618686
+    },
+    "rr-21": {
+      "start": 1794717618686,
+      "autoStarted": true,
+      "end": 1794718108302
+    },
+    "rr-22": {
+      "start": 1794718108302,
+      "autoStarted": true,
+      "end": 1794718711270
+    },
+    "ff-1": {
+      "end": 1794719459062
+    },
+    "ff-2": {
+      "start": 1794719459062,
+      "autoStarted": true,
+      "end": 1794720056929
+    },
+    "ff-3": {
+      "start": 1794720056929,
+      "autoStarted": true,
+      "end": 1794721611216
+    },
+    "bronze": {
+      "end": 1794721614990
+    },
+    "final": {
+      "end": 1794721622612
+    }
+  },
+  "lineJudges": {},
+  "seedOverrides": {
+    "rr": [
+      "tmog",
+      "ass",
+      "shlok",
+      "garch"
+    ],
+    "ff": [
+      "tmog",
+      "garch",
+      "ass",
+      "shlok"
+    ]
+  },
+  "log": [
+    {
+      "at": 1794721622612,
+      "text": "#74 Final · Court 1: Tmog 11–8 Garch"
+    },
+    {
+      "at": 1794721614990,
+      "text": "#73 3rd · Court 1: Ass 5–11 Shlok"
+    },
+    {
+      "at": 1794721611216,
+      "text": "#72 FF3 · Court 2: Ass 12–10 Shlok"
+    },
+    {
+      "at": 1794721608444,
+      "text": "#71 FF3 · Court 1: Tmog 12–10 Garch"
+    },
+    {
+      "at": 1794720056929,
+      "text": "#70 FF2 · Court 2: Ass 11–13 Garch"
+    },
+    {
+      "at": 1794719960143,
+      "text": "#69 FF2 · Court 1: Tmog 11–5 Shlok"
+    },
+    {
+      "at": 1794719459062,
+      "text": "#68 FF1 · Court 2: Shlok 4–11 Garch"
+    },
+    {
+      "at": 1794719286882,
+      "text": "#67 FF1 · Court 1: Tmog 11–3 Ass"
+    },
+    {
+      "at": 1794718711270,
+      "text": "#64 R22 · Court 1: Garch 10–8 Abhi"
+    },
+    {
+      "at": 1794718456417,
+      "text": "#65 R22 · Court 2: Tmog 7–1 Fazz"
+    },
+    {
+      "at": 1794718425036,
+      "text": "#66 R22 · Court 3: Hitesh 1–7 Abi"
+    },
+    {
+      "at": 1794718108302,
+      "text": "#61 R21 · Court 1: Savo 1–7 Shlok"
+    },
+    {
+      "at": 1794718103389,
+      "text": "#62 R21 · Court 2: Ritz 7–5 Ass"
+    },
+    {
+      "at": 1794718011795,
+      "text": "#63 R21 · Court 3: Hitesh 7–3 Vik"
+    },
+    {
+      "at": 1794717618686,
+      "text": "#58 R20 · Court 1: Fazz 5–7 Kuvindu"
+    },
+    {
+      "at": 1794717611801,
+      "text": "#60 R20 · Court 3: Savo 6–8 Garch"
+    },
+    {
+      "at": 1794717608087,
+      "text": "#59 R20 · Court 2: Abhi 7–9 Abi"
+    },
+    {
+      "at": 1794717022447,
+      "text": "#57 R19 · Court 3: Ass 8–6 Tmog"
+    },
+    {
+      "at": 1794716874737,
+      "text": "#55 R19 · Court 1: Hitesh 5–7 Abhi"
+    },
+    {
+      "at": 1794716834673,
+      "text": "#56 R19 · Court 2: Ritz 7–1 Abi"
+    },
+    {
+      "at": 1794716508618,
+      "text": "#52 R18 · Court 1: Garch 7–4 Ritz"
+    },
+    {
+      "at": 1794716371319,
+      "text": "#54 R18 · Court 3: Vik 7–4 Kuvindu"
+    },
+    {
+      "at": 1794716351455,
+      "text": "#53 R18 · Court 2: Shlok 2–7 Ass"
+    },
+    {
+      "at": 1794715944404,
+      "text": "#51 R17 · Court 3: Fazz 6–8 Savo"
+    },
+    {
+      "at": 1794715903302,
+      "text": "#50 R17 · Court 2: Abhi 8–6 Vik"
+    },
+    {
+      "at": 1794715869419,
+      "text": "#49 R17 · Court 1: Shlok 7–4 Abi"
+    },
+    {
+      "at": 1794715577627,
+      "text": "#46 R16 · Court 1: Ritz 7–5 Abhi"
+    },
+    {
+      "at": 1794715468405,
+      "text": "#48 R16 · Court 3: Hitesh 4–7 Tmog"
+    },
+    {
+      "at": 1794715336732,
+      "text": "#47 R16 · Court 2: Ass 7–2 Abi"
+    },
+    {
+      "at": 1794715022300,
+      "text": "#44 R15 · Court 2: Shlok 8–6 Ritz"
+    },
+    {
+      "at": 1794714882465,
+      "text": "#45 R15 · Court 3: Kuvindu 7–3 Savo"
+    },
+    {
+      "at": 1794714853943,
+      "text": "#43 R15 · Court 1: Vik 2–7 Garch"
+    },
+    {
+      "at": 1794714561519,
+      "text": "#42 R14 · Court 3: Vik 9–11 Fazz"
+    },
+    {
+      "at": 1794714377992,
+      "text": "#40 R14 · Court 1: Kuvindu 3–7 Shlok"
+    },
+    {
+      "at": 1794714330651,
+      "text": "#41 R14 · Court 2: Tmog 7–1 Abi"
+    },
+    {
+      "at": 1794713955670,
+      "text": "#38 R13 · Court 2: Abhi 5–7 Tmog"
+    },
+    {
+      "at": 1794713898847,
+      "text": "#37 R13 · Court 1: Garch 5–7 Ass"
+    },
+    {
+      "at": 1794713880023,
+      "text": "#39 R13 · Court 3: Hitesh 7–1 Savo"
+    },
+    {
+      "at": 1794713487214,
+      "text": "#34 R12 · Court 1: Shlok 8–6 Abhi"
+    },
+    {
+      "at": 1794713396202,
+      "text": "#35 R12 · Court 2: Fazz 4–7 Ritz"
+    },
+    {
+      "at": 1794713366104,
+      "text": "#36 R12 · Court 3: Savo 0–7 Ass"
+    },
+    {
+      "at": 1794713038666,
+      "text": "#33 R11 · Court 3: Abi 7–5 Vik"
+    },
+    {
+      "at": 1794713020197,
+      "text": "#32 R11 · Court 2: Kuvindu 5–7 Ritz"
+    },
+    {
+      "at": 1794713007794,
+      "text": "#31 R11 · Court 1: Fazz 3–7 Garch"
+    },
+    {
+      "at": 1794712681742,
+      "text": "#30 R10 · Court 3: Tmog 7–1 Vik"
+    },
+    {
+      "at": 1794712620840,
+      "text": "#29 R10 · Court 2: Hitesh 7–9 Kuvindu"
+    },
+    {
+      "at": 1794712567119,
+      "text": "#28 R10 · Court 1: Garch 5–7 Shlok"
+    },
+    {
+      "at": 1794712126849,
+      "text": "#25 R9 · Court 1: Ass 7–5 Abhi"
+    },
+    {
+      "at": 1794712023244,
+      "text": "#27 R9 · Court 3: Hitesh 4–7 Shlok"
+    },
+    {
+      "at": 1794711962056,
+      "text": "#26 R9 · Court 2: Tmog 7–3 Savo"
+    },
+    {
+      "at": 1794711578132,
+      "text": "#23 R8 · Court 2: Savo 5–7 Ritz"
+    },
+    {
+      "at": 1794711512861,
+      "text": "#22 R8 · Court 1: Kuvindu 2–7 Garch"
+    },
+    {
+      "at": 1794711475254,
+      "text": "#24 R8 · Court 3: Abi 7–2 Fazz"
+    },
+    {
+      "at": 1794711169523,
+      "text": "#21 R7 · Court 3: Hitesh 4–7 Ass"
+    },
+    {
+      "at": 1794711120183,
+      "text": "#19 R7 · Court 1: Garch 5–7 Tmog"
+    },
+    {
+      "at": 1794711102959,
+      "text": "#20 R7 · Court 2: Vik 3–7 Shlok"
+    },
+    {
+      "at": 1794710686897,
+      "text": "#17 R6 · Court 2: Abhi 10–8 Kuvindu"
+    },
+    {
+      "at": 1794710676282,
+      "text": "#18 R6 · Court 3: Vik 8–6 Savo"
+    },
+    {
+      "at": 1794710514504,
+      "text": "#16 R6 · Court 1: Ass 7–4 Fazz"
+    },
+    {
+      "at": 1794710142026,
+      "text": "#15 R5 · Court 3: Tmog 7–3 Kuvindu"
+    },
+    {
+      "at": 1794710060629,
+      "text": "#14 R5 · Court 2: Hitesh 1–7 Ritz"
+    },
+    {
+      "at": 1794710034132,
+      "text": "#13 R5 · Court 1: Abi 3–7 Garch"
+    },
+    {
+      "at": 1794709756651,
+      "text": "#11 R4 · Court 2: Abhi 7–5 Fazz"
+    },
+    {
+      "at": 1794709748721,
+      "text": "#12 R4 · Court 3: Abi 7–2 Savo"
+    },
+    {
+      "at": 1794709709442,
+      "text": "#10 R4 · Court 1: Shlok 2–7 Tmog"
+    },
+    {
+      "at": 1794709459373,
+      "text": "#9 R3 · Court 3: Kuvindu 3–7 Ass"
+    },
+    {
+      "at": 1794709389640,
+      "text": "#7 R3 · Court 1: Hitesh 3–7 Fazz"
+    },
+    {
+      "at": 1794709377882,
+      "text": "#8 R3 · Court 2: Ritz 7–4 Vik"
+    },
+    {
+      "at": 1794709073375,
+      "text": "#6 R2 · Court 3: Abi 6–8 Kuvindu"
+    },
+    {
+      "at": 1794709056765,
+      "text": "#5 R2 · Court 2: Ass 8–6 Vik"
+    },
+    {
+      "at": 1794708934966,
+      "text": "#4 R2 · Court 1: Hitesh 3–7 Garch"
+    },
+    {
+      "at": 1794708658666,
+      "text": "#3 R1 · Court 3: Savo 6–8 Abhi"
+    },
+    {
+      "at": 1794708526899,
+      "text": "#2 R1 · Court 2: Ritz 1–7 Tmog"
+    },
+    {
+      "at": 1794708512756,
+      "text": "#1 R1 · Court 1: Fazz 2–7 Shlok"
+    },
+    {
+      "at": 1794707000082,
+      "text": "Tournament reset: all scores cleared"
+    }
+  ]
+}
