@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useReducer,
 import type { PlayerId } from './data/fixture';
 import { simulateSessions } from './lib/demo';
 import { initialState, reducer, type Action } from './lib/reducer';
-import { loadState, REHEARSAL, REHEARSAL_PREFILL, saveState, STORAGE_KEY } from './lib/storage';
+import { hasScores, loadState, PUBLISHED, REHEARSAL, REHEARSAL_PREFILL, saveState, STORAGE_KEY } from './lib/storage';
 import { derive, type Derived } from './lib/tournament';
 import type { TournamentState } from './lib/types';
 
@@ -15,12 +15,16 @@ interface Store {
   dispatch: (c: Command) => void;
   name: (id: PlayerId | null | undefined) => string;
   saveFailed: boolean;
+  /** Showing the results published with the site, not scores entered in this browser. */
+  published: boolean;
 }
 
 const StoreContext = createContext<Store | null>(null);
 
 function boot(): TournamentState {
   const saved = loadState();
+  // The scoring laptop keeps its own scores; everyone else sees the published results.
+  if (!REHEARSAL && PUBLISHED && !hasScores(saved)) return PUBLISHED;
   if (saved) return saved;
   if (REHEARSAL && REHEARSAL_PREFILL > 0) return simulateSessions(initialState(), REHEARSAL_PREFILL, 7);
   return initialState();
@@ -36,6 +40,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       fromOtherTab.current = false;
       return;
     }
+    // Don't copy the published results into this browser until something is changed,
+    // so a later re-publish still reaches people who have already looked.
+    if (state === PUBLISHED) return;
     setSaveFailed(!saveState(state));
   }, [state]);
 
@@ -60,7 +67,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     [state.players],
   );
 
-  const value = useMemo(() => ({ state, d, dispatch, name, saveFailed }), [state, d, dispatch, name, saveFailed]);
+  const published = state === PUBLISHED;
+  const value = useMemo(
+    () => ({ state, d, dispatch, name, saveFailed, published }),
+    [state, d, dispatch, name, saveFailed, published],
+  );
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 }
 

@@ -44,6 +44,7 @@ Scores are saved automatically in the browser on the laptop you use (`localStora
 - Use **one laptop and one browser** for scoring. Other tabs on the same laptop (like the TV display) stay in sync.
 - The public link on someone's phone shows an **empty** tournament: the scores aren't uploaded anywhere. Share the ladder with **Copy for group chat** instead.
 - Saves and backups from the earlier 11-player draw are ignored: the match numbers changed, so they can't be imported.
+- To put the results on the public link afterwards, save an exported backup as `src/data/published.json` and push to `main`. Browsers with no scores of their own then show those results (with a banner); the scoring laptop keeps its own. Set the file back to `null` to unpublish.
 - **Export a backup** at the break. It can be imported on any other device to carry on.
 - For a fully offline setup, Admin → **Download the app** saves a single `.html` file that opens by double-click.
 
