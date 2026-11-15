@@ -24,7 +24,7 @@ The format, draw, rules and timetable are built in, taken from the tournament pr
 | **Fixtures** | All 74 matches with courts, scores and line judges; filter by player; **Print** for a paper backup. |
 | **Players** | A card per player: playing, judging or resting right now, next match and how many rounds away, next line-judge duty, results. Handy for "when am I on?" |
 | **Finals** | Final Four seeding (Q1–Q4), the fresh Final Four table, the 3rd place playoff and The Final. Seeding can be set by hand for an unbreakable tie (coin toss) or a withdrawal, and is locked once the next stage starts so a late correction can't swap players mid-stage. |
-| **Awards** | Podium plus awards such as Round Robin Winner, Best Point Differential, Most Points Won, Biggest Win, Bagel Baker, Match of the Day, Longest Win Streak and Brick Wall. |
+| **Awards** | Podium plus awards such as Round Robin Winner, Best Point Differential, Most Points Won, Biggest Win, Bagel Baker, Match of the Day, Longest Win Streak and Brick Wall. Click a name above the podium to leave that player out of the fun awards, so they go to the next best (the Round Robin Winner and podium don't change). |
 | **Rules** | The rules and the day's timetable, for settling disputes. |
 | **Admin** | Backup export/import (JSON), results spreadsheet (CSV), offline copy, player renames, rehearsal mode, reset (with a restore point), and an activity log of every score and correction. |
 

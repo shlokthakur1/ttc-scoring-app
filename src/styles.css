@@ -2338,3 +2338,28 @@ select {
     letter-spacing: 0.05em;
   }
 }
+
+.awards-exclude {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.awards-exclude .chip {
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+
+.awards-exclude .chip-off {
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+
+@media print {
+  .awards-exclude {
+    display: none;
+  }
+}
