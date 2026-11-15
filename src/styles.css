@@ -235,6 +235,7 @@ select {
 }
 
 .rehearsal-banner,
+.published-banner,
 .save-banner {
   padding: 0.4rem 1rem;
   text-align: center;
@@ -2404,4 +2405,9 @@ select {
 
 .nowrap {
   white-space: nowrap;
+}
+
+.published-banner {
+  background: var(--mint);
+  color: var(--green);
 }

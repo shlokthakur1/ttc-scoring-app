@@ -26,7 +26,7 @@ const PAGES = [
 
 export function App() {
   const [route] = useHashRoute();
-  const { d, saveFailed } = useStore();
+  const { d, saveFailed, published } = useStore();
 
   useEffect(() => {
     document.title = `${REHEARSAL ? '[Rehearsal] ' : ''}${route === 'tv' ? 'TV · ' : ''}Tennis Tuesdays Cup 2026`;
@@ -49,6 +49,11 @@ export function App() {
       {REHEARSAL && (
         <div className="rehearsal-banner">
           Rehearsal mode: practice data only, kept separate from the real tournament. <a href={location.pathname}>Exit</a>
+        </div>
+      )}
+      {published && (
+        <div className="published-banner">
+          Results from the day, as published from the scoring laptop. Changes made here stay on this device only.
         </div>
       )}
       {saveFailed && (

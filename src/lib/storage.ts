@@ -1,4 +1,5 @@
 import { DEFAULT_PLAYERS, MATCH_BY_ID } from '../data/fixture';
+import publishedRaw from '../data/published.json';
 import { initialState } from './reducer';
 import type { TournamentState } from './types';
 
@@ -65,6 +66,15 @@ export function parseState(raw: unknown): TournamentState | null {
     log: Array.isArray(s.log) ? s.log.filter((e) => e && typeof e.text === 'string').slice(0, 1000) : [],
   };
 }
+
+/**
+ * Results published with the site (an Admin → Export backup file saved as
+ * src/data/published.json), or null. Shown to anyone whose browser has no
+ * scores of its own, so the public link carries the day's results.
+ */
+export const PUBLISHED: TournamentState | null = parseState(publishedRaw);
+
+export const hasScores = (s: TournamentState | null): boolean => Boolean(s && Object.keys(s.results).length > 0);
 
 export function loadState(key = STORAGE_KEY): TournamentState | null {
   const raw = safeGet(key);
