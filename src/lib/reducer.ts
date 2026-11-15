@@ -18,7 +18,7 @@ const MAX_LOG = 1000;
 
 export function initialState(players = DEFAULT_PLAYERS): TournamentState {
   return {
-    version: 1,
+    version: 2,
     players: players.map((p) => ({ ...p })),
     results: {},
     sessionTimes: {},

@@ -6,7 +6,7 @@ import { scheduleStatus } from './schedule';
 import { derive } from './tournament';
 import type { TournamentState } from './types';
 
-const T0 = new Date(2026, 9, 31, 10, 0).getTime();
+const T0 = new Date(2026, 10, 15, 13, 0).getTime();
 const min = 60_000;
 
 /** Scores every round robin match so that `ranking` is the final order (earlier = better). */
@@ -27,7 +27,7 @@ function playRoundRobin(ranking: string[], state = initialState()): TournamentSt
   return s;
 }
 
-const RANKING = ['vik', 'tmog', 'shlok', 'savo', 'ritz', 'kuvindu', 'garch', 'fazz', 'ass', 'abi', 'abhi'];
+const RANKING = ['vik', 'tmog', 'shlok', 'savo', 'ritz', 'kuvindu', 'garch', 'fazz', 'ass', 'abi', 'abhi', 'hitesh'];
 
 describe('derive / tournament flow', () => {
   it('starts on round 1 with Fazz v Shlok on court 1', () => {
@@ -37,10 +37,10 @@ describe('derive / tournament flow', () => {
     const m1 = d.matches[1];
     expect([m1.homeId, m1.awayId]).toEqual(['fazz', 'shlok']);
     expect(d.completed).toBe(0);
-    expect(d.total).toBe(63);
+    expect(d.total).toBe(74);
   });
 
-  it('gives every round robin match a resting line judge, about 5 duties each', () => {
+  it('gives every round robin match a resting line judge, 5 or 6 duties each', () => {
     const d = derive(initialState());
     for (const m of RR_MATCHES) {
       const rm = d.matches[m.id];
@@ -52,16 +52,17 @@ describe('derive / tournament flow', () => {
     }
     const rrDuties: Record<string, number> = {};
     for (const m of RR_MATCHES) rrDuties[d.matches[m.id].judgeId!] = (rrDuties[d.matches[m.id].judgeId!] ?? 0) + 1;
-    expect(Object.values(rrDuties)).toEqual(Array(11).fill(5));
+    expect(Object.keys(rrDuties)).toHaveLength(12);
+    expect(Object.values(rrDuties).sort()).toEqual([...Array(6).fill(5), ...Array(6).fill(6)]);
   });
 
   it('keeps Final Four players provisional and refuses their scores until the round robin is done', () => {
     let s = initialState();
     s = reducer(s, { type: 'record', matchId: 1, home: 7, away: 2, at: T0 });
     const d = derive(s);
-    expect(d.matches[56].provisional).toBe(true);
-    const after = reducer(s, { type: 'record', matchId: 56, home: 11, away: 3, at: T0 });
-    expect(after.results[56]).toBeUndefined();
+    expect(d.matches[67].provisional).toBe(true);
+    const after = reducer(s, { type: 'record', matchId: 67, home: 11, away: 3, at: T0 });
+    expect(after.results[67]).toBeUndefined();
   });
 
   it('seeds the Final Four from the ladder and plays it through to a champion', () => {
@@ -70,8 +71,8 @@ describe('derive / tournament flow', () => {
     expect(d.rrComplete).toBe(true);
     expect(d.rrSeeds).toMatchObject({ ids: ['vik', 'tmog', 'shlok', 'savo'], final: true });
     expect(d.current?.key).toBe('ff-1');
-    expect([d.matches[56].homeId, d.matches[56].awayId]).toEqual(['vik', 'tmog']); // Q1 v Q2
-    expect([d.matches[57].homeId, d.matches[57].awayId]).toEqual(['shlok', 'savo']); // Q3 v Q4
+    expect([d.matches[67].homeId, d.matches[67].awayId]).toEqual(['vik', 'tmog']); // Q1 v Q2
+    expect([d.matches[68].homeId, d.matches[68].awayId]).toEqual(['shlok', 'savo']); // Q3 v Q4
     expect(d.rrStandings.slice(0, 4).every((r) => r.status === 'clinched')).toBe(true);
 
     // Final Four: reverse order this time (Q4 best).
@@ -84,11 +85,11 @@ describe('derive / tournament flow', () => {
     d = derive(s);
     expect(s.seedOverrides.rr).toEqual(['vik', 'tmog', 'shlok', 'savo']); // locked once the FF began
     expect(d.ffSeeds).toMatchObject({ ids: ffRank, final: true });
-    expect([d.matches[62].homeId, d.matches[62].awayId]).toEqual(['tmog', 'vik']); // F3 v F4
-    expect([d.matches[63].homeId, d.matches[63].awayId]).toEqual(['savo', 'shlok']); // F1 v F2
+    expect([d.matches[73].homeId, d.matches[73].awayId]).toEqual(['tmog', 'vik']); // F3 v F4
+    expect([d.matches[74].homeId, d.matches[74].awayId]).toEqual(['savo', 'shlok']); // F1 v F2
 
-    s = reducer(s, { type: 'record', matchId: 62, home: 11, away: 9, at: T0 });
-    s = reducer(s, { type: 'record', matchId: 63, home: 9, away: 11, at: T0 });
+    s = reducer(s, { type: 'record', matchId: 73, home: 11, away: 9, at: T0 });
+    s = reducer(s, { type: 'record', matchId: 74, home: 9, away: 11, at: T0 });
     d = derive(s);
     expect(d.current).toBeNull();
     expect(d.podium).toEqual({ champion: 'shlok', runnerUp: 'savo', third: 'tmog', fourth: 'vik' });
@@ -96,7 +97,7 @@ describe('derive / tournament flow', () => {
 
   it('does not reshuffle the Final Four if a round robin score is corrected after it starts', () => {
     let s = playRoundRobin(RANKING);
-    s = reducer(s, { type: 'record', matchId: 56, home: 11, away: 4, at: T0 });
+    s = reducer(s, { type: 'record', matchId: 67, home: 11, away: 4, at: T0 });
     // Hand savo (Q4) a heavy defeat that would drop them below ritz.
     const savoMatches = RR_MATCHES.filter((m) => [m.home, m.away].some((r) => r.kind === 'player' && r.id === 'savo'));
     for (const m of savoMatches) {
@@ -111,7 +112,7 @@ describe('derive / tournament flow', () => {
   it('flags an unbreakable tie across the Q4/Q5 line and waits for the admin to decide', () => {
     // Every match ends 7–5, so differential and points won follow wins exactly.
     // vik > tmog > shlok beat everyone else. savo, ritz and kuvindu beat the
-    // bottom five and go round in a circle among themselves (6 wins each), so
+    // bottom six and go round in a circle among themselves (7 wins each), so
     // they're level on every tiebreaker, straddling 4th place.
     const top = ['vik', 'tmog', 'shlok'];
     const circle: Record<string, string> = { savo: 'ritz', ritz: 'kuvindu', kuvindu: 'savo' }; // key beats value
@@ -132,18 +133,18 @@ describe('derive / tournament flow', () => {
     const d = derive(s);
     expect(d.rrStandings.slice(0, 3).map((r) => r.id)).toEqual(top);
     expect(d.rrSeeds.tieAtCut.sort()).toEqual(['kuvindu', 'ritz', 'savo']);
-    expect(d.rrStandings[3]).toMatchObject({ rank: 4, won: 6 });
+    expect(d.rrStandings[3]).toMatchObject({ rank: 4, won: 7 });
     expect(d.rrStandings[3].status).toBeNull();
     expect(d.rrSeeds.final).toBe(false);
     expect(d.current?.key).toBe('ff-1');
-    expect(d.matches[56].provisional).toBe(true);
-    expect(reducer(s, { type: 'record', matchId: 56, home: 11, away: 2, at: T0 }).results[56]).toBeUndefined();
+    expect(d.matches[67].provisional).toBe(true);
+    expect(reducer(s, { type: 'record', matchId: 67, home: 11, away: 2, at: T0 }).results[67]).toBeUndefined();
 
     // After a coin toss the admin locks the seeding and the Final Four can go ahead.
     s = reducer(s, { type: 'setSeeds', from: 'rr', ids: ['vik', 'tmog', 'shlok', 'ritz'], at: T0 });
     const after = derive(s);
     expect(after.rrSeeds).toMatchObject({ ids: ['vik', 'tmog', 'shlok', 'ritz'], final: true, locked: true });
-    expect(after.matches[57]).toMatchObject({ homeId: 'shlok', awayId: 'ritz', provisional: false });
+    expect(after.matches[68]).toMatchObject({ homeId: 'shlok', awayId: 'ritz', provisional: false });
   });
 
   it('starts the next round automatically and undoes that if a score is removed', () => {
@@ -179,7 +180,7 @@ describe('derive / tournament flow', () => {
   it('can rehearse the whole day end to end', () => {
     const s = simulateSessions(initialState(), 99, 42);
     const d = derive(s);
-    expect(d.completed).toBe(63);
+    expect(d.completed).toBe(74);
     expect(d.podium.champion).toBeTruthy();
     expect(new Set(Object.values(d.podium)).size).toBe(4);
   });
@@ -195,24 +196,24 @@ describe('scheduleStatus', () => {
     const st = scheduleStatus(s, derive(s).current, T0 + planned * min + 30_000);
     expect(st.session?.key).toBe('rr-2');
     expect(Math.abs(st.slip)).toBeLessThan(0.5);
-    expect(st.projectedRrEnd).toBeCloseTo(740, 0);
+    expect(st.projectedRrEnd).toBeCloseTo(920, 0);
   });
 
   it('projects the slip when rounds take longer than planned', () => {
     let s = reducer(initialState(), { type: 'start', sessionKey: 'rr-1', at: T0 + 5 * min });
     for (const id of [1, 2, 3]) s = reducer(s, { type: 'record', matchId: id, home: 7, away: 0, at: T0 + 15 * min });
     const st = scheduleStatus(s, derive(s).current, T0 + 15 * min);
-    // Started 5 late, and rounds are taking 10 min instead of ~7.4.
+    // Started 5 late, and rounds are taking 10 min instead of ~6.4.
     expect(st.avgRrRound).toBeCloseTo(10);
     expect(st.slip).toBeGreaterThan(50);
-    expect(st.projectedPresentation).toBeGreaterThan(13 * 60 + 25);
+    expect(st.projectedPresentation).toBeGreaterThan(16 * 60 + 30);
   });
 
   it('anchors the plan to the real start time in rehearsal mode', () => {
-    const late = new Date(2026, 9, 23, 19, 0).getTime();
+    const late = new Date(2026, 10, 8, 19, 0).getTime();
     const s = reducer(initialState(), { type: 'start', sessionKey: 'rr-1', at: late });
     const st = scheduleStatus(s, derive(s).current, late + min, true);
-    expect(st.offset).toBeCloseTo(9 * 60);
+    expect(st.offset).toBeCloseTo(6 * 60);
     expect(Math.abs(st.slip)).toBeLessThan(1);
   });
 });

@@ -11,7 +11,7 @@ export interface JudgeSessionInput {
 /**
  * "Every court will have one player (with a bye that round) providing a
  * second opinion." Picks one resting player per court, spreading the duty
- * evenly (the round robin works out at exactly 5 each). Among equally-loaded
+ * evenly (the round robin works out at 5 or 6 each: 66 matches, 12 players). Among equally-loaded
  * players it goes to whoever has the fewest byes left to do it in, then
  * prefers someone who isn't on court next round (so they can warm up) and
  * didn't just come off court. In the finals it prefers players who are

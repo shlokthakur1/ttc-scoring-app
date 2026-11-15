@@ -22,7 +22,8 @@ export interface LogEntry {
 }
 
 export interface TournamentState {
-  version: 1;
+  /** 2 = the 12-player, 22-round draw. Saves from the old 11-player draw are not compatible. */
+  version: 2;
   players: Player[];
   results: Record<number, MatchResult>;
   sessionTimes: Record<string, SessionTime>;

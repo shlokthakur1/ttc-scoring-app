@@ -8,7 +8,7 @@ const params = new URLSearchParams(typeof location === 'undefined' ? '' : locati
 export const REHEARSAL = params.has('rehearsal');
 export const REHEARSAL_PREFILL = Number(params.get('rehearsal')) || 0;
 
-export const STORAGE_KEY = REHEARSAL ? 'ttc2026:rehearsal' : 'ttc2026:live';
+export const STORAGE_KEY = REHEARSAL ? 'ttc2026v2:rehearsal' : 'ttc2026v2:live';
 /** Copy taken before a reset or import, so either can be undone. */
 export const BACKUP_KEY = `${STORAGE_KEY}:before-last-reset`;
 
@@ -33,7 +33,7 @@ function safeSet(key: string, value: string): boolean {
 export function parseState(raw: unknown): TournamentState | null {
   if (!raw || typeof raw !== 'object') return null;
   const s = raw as Partial<TournamentState>;
-  if (s.version !== 1 || typeof s.results !== 'object' || !s.results) return null;
+  if (s.version !== 2 || typeof s.results !== 'object' || !s.results) return null;
   const base = initialState(DEFAULT_PLAYERS);
 
   const players = Array.isArray(s.players)
@@ -53,7 +53,7 @@ export function parseState(raw: unknown): TournamentState | null {
   }
 
   return {
-    version: 1,
+    version: 2,
     players,
     results,
     sessionTimes: s.sessionTimes && typeof s.sessionTimes === 'object' ? s.sessionTimes : {},

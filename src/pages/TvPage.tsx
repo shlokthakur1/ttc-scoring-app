@@ -1,4 +1,4 @@
-import { TOURNAMENT } from '../data/fixture';
+import { RR_SESSIONS, TOURNAMENT } from '../data/fixture';
 import { formatClock, formatDuration, minutesOfDay } from '../lib/schedule';
 import { restingInSession } from '../lib/tournament';
 import { Score, Side, StandingsTable } from '../components/ui';
@@ -36,7 +36,7 @@ export function TvPage() {
         </div>
         <div className="tv-round">
           {s.label}
-          {s.stage === 'rr' && <span className="of"> of 19</span>}
+          {s.stage === 'rr' && <span className="of"> of {RR_SESSIONS.length}</span>}
           {start && <span className="tv-timer">{formatDuration(now - start)}</span>}
         </div>
         <div className="tv-clock">{formatClock(Math.floor(minutesOfDay(now)))}</div>
