@@ -27,11 +27,19 @@ function scoreLine(m: ResolvedMatch, name: Name): string {
   return `${name(w ? m.homeId : m.awayId)} ${hi}–${lo} ${name(w ? m.awayId : m.homeId)} (${SESSION_BY_KEY[m.match.sessionKey].shortLabel})`;
 }
 
-/** Leaders in each category, used on the Awards page for the presentation. */
-export function computeAwards(d: Derived, playerIds: PlayerId[], name: Name): Award[] {
+/**
+ * Leaders in each category, used on the Awards page for the presentation.
+ * Players in `exclude` can't win the fun awards (their matches still count
+ * towards everyone else's numbers). The Round Robin Winner is the real ladder
+ * result, so it ignores `exclude`.
+ */
+export function computeAwards(d: Derived, allPlayerIds: PlayerId[], name: Name, exclude: PlayerId[] = []): Award[] {
   const awards: Award[] = [];
   const all = played(d);
   if (!all.length) return awards;
+  const out = new Set(exclude);
+  const playerIds = allPlayerIds.filter((id) => !out.has(id));
+  const rows = d.rrStandings.filter((r) => !out.has(r.id));
   const rrOver = d.rrComplete;
   const allOver = !d.current;
 
@@ -53,8 +61,8 @@ export function computeAwards(d: Derived, playerIds: PlayerId[], name: Name): Aw
   }
 
   // Best point differential across the round robin.
-  const diff = top(d.rrStandings.filter((r) => r.played), (r) => r.diff);
-  awards.push({
+  const diff = top(rows.filter((r) => r.played), (r) => r.diff);
+  if (diff.items.length) awards.push({
     icon: '📈',
     title: 'Best Point Differential',
     winners: diff.items.map((r) => r.id),
@@ -63,13 +71,13 @@ export function computeAwards(d: Derived, playerIds: PlayerId[], name: Name): Aw
   });
 
   // Most points won across the whole day.
-  const pts: Record<PlayerId, number> = Object.fromEntries(playerIds.map((id) => [id, 0]));
+  const pts: Record<PlayerId, number> = Object.fromEntries(allPlayerIds.map((id) => [id, 0]));
   for (const m of all) {
     pts[m.homeId!] += m.result!.home;
     pts[m.awayId!] += m.result!.away;
   }
   const mostPts = top(playerIds, (id) => pts[id]);
-  awards.push({
+  if (mostPts.items.length) awards.push({
     icon: '💪',
     title: 'Most Points Won',
     winners: mostPts.items,
@@ -79,10 +87,10 @@ export function computeAwards(d: Derived, playerIds: PlayerId[], name: Name): Aw
 
   // Biggest win: the latest of the widest margins (a finals thrashing beats an early one).
   const margin = (m: ResolvedMatch) => Math.abs(m.result!.home - m.result!.away);
-  const biggest = top(all, margin);
+  const biggest = top(all.filter((m) => !out.has(m.winnerId!)), margin);
   const headline = biggest.items[biggest.items.length - 1];
   const others = biggest.items.length - 1;
-  awards.push({
+  if (headline) awards.push({
     icon: '💥',
     title: 'Biggest Win',
     winners: [headline.winnerId!],
@@ -95,7 +103,7 @@ export function computeAwards(d: Derived, playerIds: PlayerId[], name: Name): Aw
   for (const m of all) {
     if (Math.min(m.result!.home, m.result!.away) === 0) bagels[m.winnerId!] = (bagels[m.winnerId!] ?? 0) + 1;
   }
-  const baker = Object.keys(bagels);
+  const baker = Object.keys(bagels).filter((id) => !out.has(id));
   if (baker.length) {
     const most = top(baker, (id) => bagels[id]);
     awards.push({
@@ -109,9 +117,9 @@ export function computeAwards(d: Derived, playerIds: PlayerId[], name: Name): Aw
 
   // Epic match: the longest deuce battle.
   const total = (m: ResolvedMatch) => m.result!.home + m.result!.away;
-  const epic = top(all, total);
+  const epic = top(all.filter((m) => !out.has(m.homeId!) && !out.has(m.awayId!)), total);
   const epicMatch = epic.items[epic.items.length - 1];
-  if (Math.min(epicMatch.result!.home, epicMatch.result!.away) >= epicMatch.match.target - 1) {
+  if (epicMatch && Math.min(epicMatch.result!.home, epicMatch.result!.away) >= epicMatch.match.target - 1) {
     awards.push({
       icon: '⚔️',
       title: 'Match of the Day',
@@ -123,7 +131,7 @@ export function computeAwards(d: Derived, playerIds: PlayerId[], name: Name): Aw
 
   // Longest winning streak (all stages, in draw order).
   const streak: Record<PlayerId, { cur: number; best: number }> = Object.fromEntries(
-    playerIds.map((id) => [id, { cur: 0, best: 0 }]),
+    allPlayerIds.map((id) => [id, { cur: 0, best: 0 }]),
   );
   for (const m of all) {
     streak[m.winnerId!].cur++;
@@ -142,7 +150,7 @@ export function computeAwards(d: Derived, playerIds: PlayerId[], name: Name): Aw
   }
 
   // Stingiest defence: fewest points conceded per round robin match.
-  const eligible = d.rrStandings.filter((r) => r.played >= 3);
+  const eligible = rows.filter((r) => r.played >= 3);
   if (eligible.length) {
     const wall = top(eligible, (r) => -r.pa / r.played);
     awards.push({

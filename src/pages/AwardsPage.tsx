@@ -1,8 +1,20 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TOURNAMENT } from '../data/fixture';
 import { computeAwards } from '../lib/awards';
 import { Card } from '../components/ui';
+import { STORAGE_KEY } from '../lib/storage';
 import { useStore } from '../store';
+
+const EXCLUDE_KEY = `${STORAGE_KEY}:awards-exclude`;
+
+function loadExcluded(): string[] {
+  try {
+    const v = JSON.parse(localStorage.getItem(EXCLUDE_KEY) ?? '[]');
+    return Array.isArray(v) ? v.filter((x) => typeof x === 'string') : [];
+  } catch {
+    return [];
+  }
+}
 
 export function Podium() {
   const { d, name } = useStore();
@@ -30,7 +42,16 @@ export function Podium() {
 
 export function AwardsPage() {
   const { state, d, name } = useStore();
-  const awards = computeAwards(d, state.players.map((p) => p.id), name);
+  const [excluded, setExcluded] = useState<string[]>(loadExcluded);
+  useEffect(() => {
+    try {
+      localStorage.setItem(EXCLUDE_KEY, JSON.stringify(excluded));
+    } catch {
+      /* the choice just won't be remembered */
+    }
+  }, [excluded]);
+  const toggle = (id: string) => setExcluded((x) => (x.includes(id) ? x.filter((y) => y !== id) : [...x, id]));
+  const awards = computeAwards(d, state.players.map((p) => p.id), name, excluded);
   const stage = useRef<HTMLDivElement>(null);
 
   return (
@@ -44,6 +65,20 @@ export function AwardsPage() {
         >
           ⛶ Full screen
         </button>
+      </div>
+
+      <div className="awards-exclude">
+        <span className="muted small">Leave out of the fun awards (click a name):</span>
+        {state.players.map((p) => (
+          <button
+            key={p.id}
+            className={`chip${excluded.includes(p.id) ? ' chip-off' : ''}`}
+            aria-pressed={excluded.includes(p.id)}
+            onClick={() => toggle(p.id)}
+          >
+            {p.name}
+          </button>
+        ))}
       </div>
 
       <div ref={stage} className="presentation">
