@@ -3,6 +3,7 @@ import { REHEARSAL } from './lib/storage';
 import { AdminPage } from './pages/AdminPage';
 import { AwardsPage } from './pages/AwardsPage';
 import { CourtsPage } from './pages/CourtsPage';
+import { EloPage } from './pages/EloPage';
 import { FinalsPage } from './pages/FinalsPage';
 import { FixturesPage } from './pages/FixturesPage';
 import { LadderPage } from './pages/LadderPage';
@@ -14,6 +15,7 @@ import { useHashRoute, useStore } from './store';
 const PAGES = [
   { path: 'courts', label: 'Courts', component: CourtsPage },
   { path: 'ladder', label: 'Ladder', component: LadderPage },
+  { path: 'elo', label: 'Elo', component: EloPage },
   { path: 'fixtures', label: 'Fixtures', component: FixturesPage },
   { path: 'players', label: 'Players', component: PlayersPage },
   { path: 'finals', label: 'Finals', component: FinalsPage },

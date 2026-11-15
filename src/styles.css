@@ -2363,3 +2363,45 @@ select {
     display: none;
   }
 }
+
+/* ── Elo page ─────────────────────────────────────────────────────────── */
+
+.elo-table .elo-rating {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  color: var(--green);
+}
+
+.elo-trend {
+  display: block;
+}
+
+.elo-trend-base {
+  stroke: var(--line-2);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+
+.elo-trend-line {
+  fill: none;
+  stroke: var(--orange);
+  stroke-width: 1.75;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.elo-matches td {
+  font-size: 0.95rem;
+}
+
+.elo-matches .tag {
+  margin-left: 0.4rem;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
