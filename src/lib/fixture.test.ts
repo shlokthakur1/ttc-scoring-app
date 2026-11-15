@@ -39,9 +39,8 @@ describe('official fixture', () => {
       const on = s.matchIds.flatMap((id) => ids(MATCHES[id - 1]));
       expect(new Set(on).size).toBe(on.length);
       const byes = PLAYER_IDS.filter((p) => !on.includes(p)).sort();
-      // Round 3's printed bye list wrongly includes Fazz, who plays Hitesh on Court 1.
-      const printed = RR_PRINTED_BYES[i].filter((p) => !(i === 2 && p === 'fazz'));
-      expect(byes).toEqual(printed.sort());
+      expect(byes).toHaveLength(6);
+      expect(byes).toEqual([...RR_PRINTED_BYES[i]].sort());
     });
   });
 

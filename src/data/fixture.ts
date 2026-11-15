@@ -122,11 +122,11 @@ const RR_DRAW: [PlayerId, PlayerId][][] = [
 ];
 
 // Byes exactly as printed, used by the tests to check the transcription.
-// (Round 3's printed list also names Fazz, who is on Court 1 that round.)
+// (Round 3's printed list also named Fazz, a misprint: Fazz plays Hitesh on Court 1.)
 export const RR_PRINTED_BYES: PlayerId[][] = [
   ['garch', 'ass', 'abi', 'vik', 'kuvindu', 'hitesh'],
   ['shlok', 'ritz', 'abhi', 'tmog', 'fazz', 'savo'],
-  ['garch', 'shlok', 'abhi', 'tmog', 'abi', 'fazz', 'savo'],
+  ['garch', 'shlok', 'abhi', 'tmog', 'abi', 'savo'],
   ['garch', 'ritz', 'ass', 'vik', 'kuvindu', 'hitesh'],
   ['shlok', 'ass', 'abhi', 'vik', 'fazz', 'savo'],
   ['garch', 'shlok', 'ritz', 'tmog', 'abi', 'hitesh'],
